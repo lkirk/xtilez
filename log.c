@@ -7,7 +7,6 @@ void xt_log(unsigned int priority, const char *format, ...) {
   va_list args;
   va_start(args, format);
 
-  unsigned int do_exit = 0;
   char level_token;
   FILE *output_stream;
 
@@ -31,7 +30,6 @@ void xt_log(unsigned int priority, const char *format, ...) {
   case XT_LOG_LEVEL_FATAL:
     output_stream = stderr;
     level_token = 'F';
-    do_exit = 1;
     break;
   default:
     fprintf(stderr, "XTilez[F]: Unknown log level type: %d\n", priority);
@@ -68,8 +66,4 @@ void xt_log(unsigned int priority, const char *format, ...) {
   vfprintf(output_stream, buffer, args);
 
   va_end(args);
-
-  if (do_exit) {
-    exit(1);
-  }
 }
