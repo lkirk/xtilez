@@ -1,5 +1,3 @@
-#include <X11/Xlib.h>
-
 #include "xtilez.h"
 
 const char *event_type_to_str(int event_type) {
@@ -74,10 +72,7 @@ const char *event_type_to_str(int event_type) {
     return "GenericEvent";
   case LASTEvent:
     return "LASTEvent";
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreturn-type"
-    // This line exits 1
+  default:
     XT_LOG_FATAL("unknown event type: %d", event_type);
   }
 }
-#pragma clang diagnostic pop
